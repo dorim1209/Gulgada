@@ -1,0 +1,19 @@
+.Header {
+  display: flex;
+  justify-content: space-between;
+}
+img {
+  width: 14vmin;
+  height: 7vmin;
+}
+.left {
+  justify-content: flex-start;
+}
+.right {
+  display: flex;
+  align-items: flex-end;
+}
+.right > p {
+  display: inline-flex;
+  margin: 1vmin;
+}

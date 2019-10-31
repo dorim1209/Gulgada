@@ -1,0 +1,19 @@
+.Main {
+  width: auto;
+  height: auto;
+  background-color: aliceblue;
+  padding-top: 1%;
+}
+.newRecruit {
+  display: flex;
+  flex-flow: row wrap;
+  border-top: 2px solid beige;
+  justify-content: space-between;
+}
+input {
+  width: 50vmin;
+  height: 3vmin;
+  text-align: center;
+  outline: none;
+  font-size: 100%;
+}

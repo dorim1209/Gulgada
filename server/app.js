@@ -12,6 +12,7 @@ var articleRouter = require("./routes/article");
 var loginRouter = require("./routes/login");
 var mypageRouter = require("./routes/mypage");
 var uploadRouter = require("./routes/upload");
+var timelogRouter = require("./routes/timelog");
 
 var app = express();
 sequelize.sync();
@@ -33,6 +34,7 @@ app.use("/join", joinRouter);
 app.use("/mypage", mypageRouter);
 app.use("/login", loginRouter);
 app.use("/upload", uploadRouter);
+app.use("/timelog", timelogRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

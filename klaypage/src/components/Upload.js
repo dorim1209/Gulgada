@@ -7,26 +7,46 @@ class Upload extends Component {
         title: '',
         date: '',
         money: '',
-        address: ''
+        address: '',
+        img: null
     }
     Upload = async (e) => {
         const formData = new FormData();
-        await formData.append('file', this.state.file);
+        formData.append(
+            'file', this.state.img);
+        formData.append(
+            'title', this.state.title);
+        formData.append(
+            'date', this.state.date);
+        formData.append(
+            'money', this.state.money);
+        formData.append(
+            'address', this.state.address);
+        console.log(formData);
+
         const {
             data: {
                 result
             }
-        } = await axios.post('http://70.12.227.203:3000/upload', {
+        } = await axios.post('http://localhost:4000/upload', formData, /* {
             params: {
                 title: this.state.title,
                 date: this.state.date,
                 money: this.state.money,
                 address: this.state.address,
-            }
-        })
+            },
+        } */
+        )
         if (result) {
             return (alert(`${result}`))
         }
+    }
+    imgChange = (e) => {
+        console.log("e.target.files[0]: ", e.target.files[0]);
+
+        this.setState({
+            img: e.target.files[0]
+        })
     }
     titleChange = (e) => {
         console.log("asdasd: ", e.target.value);
@@ -60,6 +80,7 @@ class Upload extends Component {
     render() {
         return (
             <div className='Upload'>
+                <input type="file" onChange={this.imgChange} />
                 <p>업무</p>
                 <input type="text" name="" id="" placeholder='상호명' value={this.state.title} onChange={this.titleChange} />
                 <p>날짜</p>

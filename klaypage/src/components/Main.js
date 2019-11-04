@@ -13,8 +13,9 @@ class Main extends React.Component {
             data: {
                 article
             }
-        } = await axios.get('http://70.12.227.203:3000/article')
+        } = await axios.get('http://localhost:4000/article')
         console.log(article);
+        article.reverse()
         this.setState({ article });
     }
 
@@ -38,8 +39,8 @@ class Main extends React.Component {
                 <p>신규 공고 내역</p>
                 <table></table>
                 <div className="newRecruit">
-                    {article.map(({ db_image, db_title, db_date, db_money, db_address }) => (
-                        < Card db_image={db_image} db_title={db_title} db_date={db_date} db_money={db_money} db_address={db_address} />
+                    {article.map(({ db_image, db_title, db_date, db_money, db_address, db_img }) => (
+                        < Card db_image={db_image} db_title={db_title} db_date={db_date} db_money={db_money} db_address={db_address} db_img={db_img} />
                     ))}
                 </div>
             </div >

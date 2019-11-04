@@ -15,7 +15,7 @@ class Join extends React.Component {
             data: {
                 result
             }
-        } = await axios.post('http://70.12.227.203:3000/join', {
+        } = await axios.post('http://localhost:4000/join', {
             params: {
                 name: this.state.name,
                 pnum: this.state.pnum,

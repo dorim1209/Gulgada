@@ -13,7 +13,7 @@ class Mypage extends React.Component {
                 ptype,
                 birth
             }
-        } = await axios.post('http://70.12.227.203:3000/mypage', {
+        } = await axios.post('http://localhost:4000/mypage', {
             params: {
                 pnum: localStorage.getItem('pnum'),
                 name: localStorage.getItem('name'),

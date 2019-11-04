@@ -13,7 +13,7 @@ class Login extends React.Component {
                 pnum,
                 name
             }
-        } = await axios.post('http://70.12.227.203:3000/login', {
+        } = await axios.post('http://localhost:4000/login', {
             params: {
                 pnum: this.state.pnum,
                 pw: this.state.pw,

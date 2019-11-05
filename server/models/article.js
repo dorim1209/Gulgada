@@ -26,6 +26,12 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(100),
         /* NULL 값 입력 안됨 */
         allowNull: true
+      },
+      db_img: {
+        /* 크기가 100인 문자열 */
+        type: DataTypes.STRING(100),
+        /* NULL 값 입력 안됨 */
+        allowNull: true
       }
     },
     {

@@ -6,7 +6,8 @@ import axios from "axios";
 
 class Main extends React.Component {
   state = {
-    article: []
+    article: [],
+    pnum: localStorage.getItem("pnum")
   };
   article = async () => {
     const {
@@ -14,6 +15,21 @@ class Main extends React.Component {
     } = await axios.get("http://localhost:4000/article");
     console.log(article);
     this.setState({ article });
+  };
+  Apply = async i => {
+    // const {
+    //   data: { result }
+    // } = await axios.post("http://localhost:4000/apply", {
+    //   params: {
+    //     name: this.state.name,
+    //     pnum: this.state.pnum,
+    //     ptype: this.state.ptype,
+    //     birth: this.state.birth,
+    //     applyno: this.state.article.id + this.state.pnum
+    //   }
+    // });
+    console.log(this.state.article[i].id + this.state.pnum);
+    // console.log(this.state.pnum);
   };
 
   componentDidMount = () => {
@@ -37,13 +53,16 @@ class Main extends React.Component {
         <table></table>
         <div className="newRecruit">
           {article.map(
-            ({ db_image, db_title, db_date, db_money, db_address }) => (
+            ({ db_title, db_date, db_money, db_address, db_img }, i) => (
               <Card
-                db_image={db_image}
                 db_title={db_title}
                 db_date={db_date}
                 db_money={db_money}
                 db_address={db_address}
+                db_img={db_img}
+                Apply={() => {
+                  this.Apply(i);
+                }}
               />
             )
           )}

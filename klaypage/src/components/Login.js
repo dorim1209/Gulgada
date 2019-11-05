@@ -22,6 +22,7 @@ class Login extends React.Component {
       localStorage.setItem("pnum", pnum);
       localStorage.setItem("name", name);
       return alert(`${name}님 로그인되었습니다.`);
+      // return alert(`pnum : ${pnum},name : ${name},pnum : ${pnum},pnum : ${pnum},`);
     }
   };
   pnumChange = e => {

@@ -14,7 +14,14 @@ router.post("/", function(req, res, next) {
     /* Join 테이블의 데이터를 가져오는 SQL문 */
     Join.findAll({
       /* db_ptype, db_pnum, db_name, db_pw, db_birth 값을 가져옴 */
-      attributes: ["db_ptype", "db_pnum", "db_name", "db_pw", "db_birth"],
+      attributes: [
+        "db_ptype",
+        "db_pnum",
+        "db_name",
+        "db_pw",
+        "db_birth",
+        "db_public"
+      ],
 
       /* 조건과 값이 일치하는 경우 */
       where: {
@@ -33,7 +40,13 @@ router.post("/", function(req, res, next) {
           console.log("DB", DB);
 
           //req.session.login = true;
-          res.json({ result: 1, pnum: DB.db_pnum, name: DB.db_name });
+          res.json({
+            result: 1,
+            pnum: DB.db_pnum,
+            name: DB.db_name,
+            pubKey: DB.db_public,
+            ptype: DB.db_ptype
+          });
         } else {
           res.json({ result: 0 });
         }

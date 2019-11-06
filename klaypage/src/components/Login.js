@@ -4,23 +4,27 @@ import axios from "axios";
 class Login extends React.Component {
   state = {
     pnum: "",
-    pw: ""
+    ptype: "",
+    pw: "",
+    pubKey: ""
   };
   Join = async e => {
     const {
-      data: { result, pnum, name }
+      data: { result, pnum, name, ptype, pubKey }
     } = await axios.post("http://localhost:4000/login", {
       params: {
         pnum: this.state.pnum,
-        pw: this.state.pw
+        pw: this.state.pw,
+        pubKey: this.state.pubKey
       }
     });
-    console.log("this.state.pnum: ", this.state.pnum);
 
     console.log("result: ", result);
     if (result === 1) {
       localStorage.setItem("pnum", pnum);
       localStorage.setItem("name", name);
+      localStorage.setItem("ptype", ptype);
+      localStorage.setItem("pubKey", pubKey);
       return alert(`${name}님 로그인되었습니다.`);
       // return alert(`pnum : ${pnum},name : ${name},pnum : ${pnum},pnum : ${pnum},`);
     }

@@ -23,6 +23,7 @@ class Timelog extends React.Component {
     console.log(result);
     return alert(result);
   };
+
   gobuttonChange = async e => {
     await this.setState({
       go: 1,

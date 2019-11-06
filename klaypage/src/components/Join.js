@@ -101,7 +101,7 @@ class Join extends React.Component {
           value="1"
           onChange={this.ptypeChange}
         />
-        <span>구직</span>
+        <span>구인</span>
         <input
           type="radio"
           name="ptype"
@@ -109,7 +109,7 @@ class Join extends React.Component {
           value="2"
           onChange={this.ptypeChange}
         />
-        <span>구인</span>
+        <span>구직</span>
         <button onClick={this.Join}>가입하기</button>
       </div>
     );

@@ -33,9 +33,13 @@ router.post("/", upload.single("file"), function(req, res) {
 
   Article.create({
     db_title: req.body.title,
-    db_date: req.body.date,
+    db_wtype: req.body.wtype,
+    db_sdate: req.body.sdate,
+    db_edate: req.body.edate,
     db_money: req.body.money,
     db_address: req.body.address,
+    db_description: req.body.description,
+    db_pubKey: req.body.pubKey,
     db_img: req.file.filename
   })
     .then(result => {

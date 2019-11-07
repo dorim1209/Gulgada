@@ -24,5 +24,6 @@ db.Article = require("./article")(sequelize, Sequelize);
 db.Join = require("./join")(sequelize, Sequelize);
 db.Timelog = require("./timelog")(sequelize, Sequelize);
 db.Key = require("./key")(sequelize, Sequelize);
+db.Apply = require("./apply")(sequelize, Sequelize);
 
 module.exports = db;

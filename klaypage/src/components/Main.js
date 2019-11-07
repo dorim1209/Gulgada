@@ -20,19 +20,18 @@ class Main extends React.Component {
     this.setState({ article });
   };
   Apply = async i => {
-    // const {
-    //   data: { result }
-    // } = await axios.post("http://localhost:4000/apply", {
-    //   params: {
-    //     name: this.state.name,
-    //     pnum: this.state.pnum,
-    //     ptype: this.state.ptype,
-    //     birth: this.state.birth,
-    //     applyno: this.state.article.id + this.state.pnum
-    //   }
-    // });
-    console.log(this.state.article[i].id + this.state.pnum);
-    // console.log(this.state.pnum);
+    const {
+      data: { result, articleId, opubKey }
+    } = await axios.post("http://localhost:4000/apply", {
+      params: {
+        apubKey: this.state.pubKey,
+        articleId: this.state.article[i].id
+      }
+    });
+    // console.log(this.state.article[i].id + this.state.pnum);
+    if (result === 1) {
+      alert("지원되었습니다.");
+    }
   };
 
   componentDidMount = () => {

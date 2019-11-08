@@ -6,6 +6,10 @@ const Card = ({
   db_wtype,
   db_sdate,
   db_edate,
+  db_stime,
+  db_smin,
+  db_etime,
+  db_emin,
   db_money,
   db_address,
   db_description,
@@ -22,6 +26,11 @@ const Card = ({
       <p>
         {db_sdate}~{db_edate}
       </p>
+      <h4>근무시간</h4>
+      <p>
+        {db_stime}시 {db_smin}분부터 {db_etime}시 {db_emin}분
+      </p>
+
       <h4>시급</h4>
       <p>{db_money}</p>
       <h4>주소</h4>

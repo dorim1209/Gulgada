@@ -1,4 +1,6 @@
 import React from "react";
+import Apply from "./Apply";
+import axios from "axios";
 
 const Caver = require("caver-js");
 const caver = new Caver("https://api.baobab.klaytn.net:8651"); // cypress에서는 "https://api.cypress.klaytn.net:8651"를 사용하세요.
@@ -24,6 +26,24 @@ const contract = new caver.klay.Contract(
 );
 
 class AdminTimelog extends React.Component {
+  state = {
+    apply: []
+  };
+  CurrentApp = async e => {
+    const {
+      data: { apply }
+    } = await axios.post("http://localhost:4000/currentapp", {
+      params: {
+        pubKey: localStorage.getItem("pubKey")
+      }
+    });
+    this.setState({ apply });
+  };
+  componentDidMount = async () => {
+    await this.CurrentApp();
+    await console.log(this.state.apply.length);
+  };
+
   uploadArticle = async () => {
     await contract.methods
       .uploadPaper("workerAddr", "time", "title", "location")
@@ -36,14 +56,60 @@ class AdminTimelog extends React.Component {
       });
     alert("성공");
   };
+  createCon = async i => {
+    alert(i);
+    console.log(this.state.apply[i].db_accept);
+
+    // this.setState(apply[i].db_accept:0)
+  };
   render() {
-    return (
+    const { apply } = this.state;
+
+    return this.state.apply.length === 0 ? (
+      <>
+        <div>올라간 공고가 없어요.</div>
+      </>
+    ) : !this.state.apply.db_accept ? (
       <>
         <div>
+          {apply.map(({ db_apubKey, id, db_opubKey }, i) => (
+            <Apply
+              db_apubKey={db_apubKey}
+              id={id}
+              db_opubKey={db_opubKey}
+              createCon={() => {
+                this.createCon(i);
+              }}
+            />
+          ))}
           <button onClick={this.uploadArticle}>트랜잭션 생성</button>
         </div>
       </>
+    ) : (
+      <>
+        <div>현재 대기중인 지원자가 없어요~</div>
+      </>
     );
+    // return (
+    //   <>
+    //     if(!{this.state.apply.db_accept})
+    //     {
+    //       <div>
+    // {apply.map(({ db_apubKey, id, db_opubKey }, i) => (
+    //   <Apply
+    //     db_apubKey={db_apubKey}
+    //     id={id}
+    //     db_opubKey={db_opubKey}
+    //     createCon={() => {
+    //       this.createCon(i);
+    //     }}
+    //   />
+    // ))}
+    // <button onClick={this.uploadArticle}>트랜잭션 생성</button>
+    //       </div>
+    //     }
+    //   </>
+    // );
   }
 }
 

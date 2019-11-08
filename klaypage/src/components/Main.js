@@ -19,9 +19,10 @@ class Main extends React.Component {
     console.log(article);
     this.setState({ article });
   };
+
   Apply = async i => {
     const {
-      data: { result, articleId, opubKey }
+      data: { result }
     } = await axios.post("http://localhost:4000/apply", {
       params: {
         apubKey: this.state.pubKey,
@@ -65,6 +66,10 @@ class Main extends React.Component {
                 db_wtype,
                 db_sdate,
                 db_edate,
+                db_stime,
+                db_smin,
+                db_etime,
+                db_emin,
                 db_money,
                 db_address,
                 db_description,
@@ -77,6 +82,10 @@ class Main extends React.Component {
                 db_wtype={db_wtype}
                 db_sdate={db_sdate}
                 db_edate={db_edate}
+                db_stime={db_stime}
+                db_smin={db_smin}
+                db_etime={db_etime}
+                db_emin={db_emin}
                 db_money={db_money}
                 db_address={db_address}
                 db_description={db_description}

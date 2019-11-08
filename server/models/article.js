@@ -27,6 +27,30 @@ module.exports = (sequelize, DataTypes) => {
         /* NULL 값 입력 안됨 */
         allowNull: true
       },
+      db_stime: {
+        /* 크기가 100인 문자열 */
+        type: DataTypes.STRING(10),
+        /* NULL 값 입력 안됨 */
+        allowNull: true
+      },
+      db_smin: {
+        /* 크기가 100인 문자열 */
+        type: DataTypes.STRING(10),
+        /* NULL 값 입력 안됨 */
+        allowNull: true
+      },
+      db_etime: {
+        /* 크기가 100인 문자열 */
+        type: DataTypes.STRING(10),
+        /* NULL 값 입력 안됨 */
+        allowNull: true
+      },
+      db_emin: {
+        /* 크기가 100인 문자열 */
+        type: DataTypes.STRING(10),
+        /* NULL 값 입력 안됨 */
+        allowNull: true
+      },
       db_money: {
         /* 크기가 100인 문자열 */
         type: DataTypes.STRING(10),

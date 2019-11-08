@@ -14,6 +14,7 @@ var mypageRouter = require("./routes/mypage");
 var uploadRouter = require("./routes/upload");
 var timelogRouter = require("./routes/timelog");
 var applyRouter = require("./routes/apply");
+var currentappRouter = require("./routes/currentapp");
 
 var app = express();
 sequelize.sync();
@@ -38,6 +39,7 @@ app.use("/login", loginRouter);
 app.use("/upload", uploadRouter);
 app.use("/timelog", timelogRouter);
 app.use("/apply", applyRouter);
+app.use("/currentapp", currentappRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

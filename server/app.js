@@ -15,6 +15,9 @@ var uploadRouter = require("./routes/upload");
 var timelogRouter = require("./routes/timelog");
 var applyRouter = require("./routes/apply");
 var currentappRouter = require("./routes/currentapp");
+var createcontractRouter = require("./routes/createcontract");
+var rejectcontractRouter = require("./routes/rejectcontract");
+var getacceptRouter = require("./routes/getaccept");
 
 var app = express();
 sequelize.sync();
@@ -40,6 +43,9 @@ app.use("/upload", uploadRouter);
 app.use("/timelog", timelogRouter);
 app.use("/apply", applyRouter);
 app.use("/currentapp", currentappRouter);
+app.use("/createcontract", createcontractRouter);
+app.use("/rejectcontract", rejectcontractRouter);
+app.use("/getaccept", getacceptRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

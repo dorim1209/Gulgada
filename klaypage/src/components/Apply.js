@@ -1,11 +1,19 @@
 import React from "react";
 import "./../css/Card.css";
 
-const Apply = ({ db_apubKey, id, db_opubKey, db_accept, createCon }) => {
+const Apply = ({
+  db_apubKey,
+  id,
+  db_opubKey,
+  db_accept,
+  createCon,
+  rejectCon
+}) => {
   return (
     <div className="Apply">
       {db_apubKey}, {id}, {db_opubKey},{db_accept}
-      <button onClick={createCon}>계약체결하기</button>
+      <button onClick={createCon}>수락</button>
+      <button onClick={rejectCon}>거절</button>
     </div>
   );
 };

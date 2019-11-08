@@ -25,11 +25,6 @@ router.post("/", function(req, res) {
       if (DB) {
         console.log("DB", DB);
 
-        // res.json({
-        //   result: 1,
-        //   articleId: DB.id,
-        //   opubKey: DB.db_pubKey
-        // });
         Apply.create({
           db_apubKey: req.body.params.apubKey,
           db_articleId: req.body.params.articleId,

@@ -11,8 +11,8 @@ router.post("/", function(req, res, next) {
   } else {
     /* Join 테이블의 데이터를 가져오는 SQL문 */
     Join.findAll({
-      /* db_pnum, db_name 값을 가져옴 */
-      attributes: ["db_pnum", "db_name"],
+      /* db_pnum, db_name, db_public 값을 가져옴 */
+      attributes: ["db_pnum", "db_name", "db_public"],
 
       /* 조건과 값이 일치하는 경우 */
       where: {

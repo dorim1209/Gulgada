@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
         /* 크기가 100인 문자열 */
         type: DataTypes.STRING(100),
         /* NULL 값 입력 안됨 */
-        allowNull: false
+        allowNull: true
       },
       worker_key: {
         // 근로자 key
@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
         /* 크기가 10인 문자열 */
         type: DataTypes.STRING(10),
         /* NULL 값 입력 안됨 */
-        allowNull: false
+        allowNull: true
       }
     },
     {

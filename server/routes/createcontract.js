@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var Join = require("../models").Join;
 var Apply = require("../models").Apply;
+var Contract = require("../models").Contract;
 var cors = require("cors");
 router.use(cors());
 
@@ -53,7 +54,7 @@ router.post("/", function(req, res) {
 
 router.post("/approve", function(req, res) {
   Apply.findAll({
-    attributes: ["db_accept"],
+    attributes: ["db_accept", "db_articleId", "db_apubKey", "db_opubKey"],
 
     // 조건과 값이 일치하는 경우
     where: {
@@ -70,32 +71,24 @@ router.post("/approve", function(req, res) {
             db_apubKey: req.body.params.apubKey
           }
         } // parameter 값 수정
-      )
+      ),
+      Contract.create({
+        articleId: req.body.params.articleId, //articleId 가져옴
+        owner_key: req.body.params.opubKey, //owner_key 가져옴
+        worker_key: req.body.params.apubKey //worker_key 가져옴
+      })
         .then(result => {
           console.log("result : " + result);
-          res.status(201).json({ result: 0 });
-
-          //create Contract Data
-          /*
-          Contract.create({
-            articleId: Apply.db_articleId, //articleId 가져옴
-            owner_key: db_opubKey, //owner_key 가져옴
-            worker_key: db_apubKey, //worker_key 가져옴
-
-          })
-            .then(result => {
-              console.log("result : " + result);
-              res.status(201).json({ result: "계약서 작성 완료" });
-            })
-            .catch(err => {
-              console.error("Contract err : " + err);
-            });
-            */
+          res.status(201).json({ result: "계약서 작성 완료" });
         })
         .catch(err => {
-          console.error("Apply err : " + err);
+          console.error("Contract err : " + err);
         })
     )
+    .catch(err => {
+      console.error("Apply err : " + err);
+    })
+
     .catch(err => {
       console.error("Join findAll err : " + err);
       next(err);
@@ -103,30 +96,37 @@ router.post("/approve", function(req, res) {
 });
 
 router.post("/deny", function(req, res) {
-  Article.findAll({
-    attributes: ["db_accept"],
+  Apply.findAll({
+    attributes: ["db_accept", "db_articleId", "db_apubKey", "db_opubKey"],
 
     // 조건과 값이 일치하는 경우
     where: {
-      db_articleId: req.body.params.articleId, // parameter 값 수정
-      db_apubKey: req.body.params.apubKey, // parameter 값 수정
-      db_opubKey: req.body.params.opubKey // parameter 값 수정
+      db_articleId: req.body.params.articleId // parameter 값 수정
     }
   })
     // 조회 성공시
     .then(
       Apply.update(
         { db_accept: "1" },
-        { where: { db_articleId: req.body.params.articleId } } // parameter 값 수정
+        {
+          where: {
+            db_articleId: req.body.params.articleId,
+            db_apubKey: req.body.params.apubKey
+          }
+        } // parameter 값 수정
       )
         .then(result => {
           console.log("result : " + result);
-          res.status(201).json({ result: "거절하셨습니다." });
+          res.status(201).json({ result: "거부되었습니다." });
         })
         .catch(err => {
-          console.error(err);
+          console.error("Contract err : " + err);
         })
     )
+    .catch(err => {
+      console.error("Apply err : " + err);
+    })
+
     .catch(err => {
       console.error("Join findAll err : " + err);
       next(err);

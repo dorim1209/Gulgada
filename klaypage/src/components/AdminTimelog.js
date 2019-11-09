@@ -46,24 +46,23 @@ class AdminTimelog extends React.Component {
     return alert(result);
   };
   rejectCon = async i => {
-    console.log("rejectCon의 i", i);
     console.log(
-      "this.state.apply[i].db_articleId",
-      this.state.apply[i].db_articleId
+      "this.state.applyList[i].db_articleId",
+      this.state.applyList[i].db_articleId
     );
-    console.log(this.state.apply[i].db_apubKey);
-    console.log(this.state.apply[i].db_opubKey);
-    console.log(this.state.apply[i].db_accept);
-    console.log("this.state.apply[i]", this.state.apply[i]);
+    console.log(this.state.applyList[i].db_apubKey);
+    console.log(this.state.applyList[i].db_opubKey);
+    console.log(this.state.applyList[i].db_accept);
+    console.log("this.state.applyList[i]", this.state.applyList[i]);
 
-    // console.log(this.state.apply[i].db_accept);
+    // console.log(this.state.applyList[i].db_accept);
     const {
       data: { result }
-    } = await axios.post("http://localhost:4000/rejectcontract", {
+    } = await axios.post("http://localhost:4000/createcontract/deny", {
       params: {
-        apubKey: this.state.apply[i].db_apubKey,
-        opubKey: this.state.apply[i].db_opubKey,
-        articleId: this.state.apply[i].db_articleId
+        apubKey: this.state.applyList[i].db_apubKey,
+        opubKey: this.state.applyList[i].db_opubKey,
+        articleId: this.state.applyList[i].db_articleId
       }
     });
 
@@ -85,31 +84,31 @@ class AdminTimelog extends React.Component {
     console.log("result:", result);
     return alert(result);
   };
-  rejectCon = async i => {
-    console.log("rejectCon의 i", i);
-    console.log(
-      "this.state.apply[i].db_articleId",
-      this.state.apply[i].db_articleId
-    );
-    console.log(this.state.apply[i].db_apubKey);
-    console.log(this.state.apply[i].db_opubKey);
-    console.log(this.state.apply[i].db_accept);
-    console.log("this.state.apply[i]", this.state.apply[i]);
+  // rejectCon = async i => {
+  //   console.log("rejectCon의 i", i);
+  //   console.log(
+  //     "this.state.apply[i].db_articleId",
+  //     this.state.apply[i].db_articleId
+  //   );
+  //   console.log(this.state.apply[i].db_apubKey);
+  //   console.log(this.state.apply[i].db_opubKey);
+  //   console.log(this.state.apply[i].db_accept);
+  //   console.log("this.state.apply[i]", this.state.apply[i]);
 
-    // console.log(this.state.apply[i].db_accept);
-    const {
-      data: { result }
-    } = await axios.post("http://localhost:4000/rejectcontract", {
-      params: {
-        apubKey: this.state.apply[i].db_apubKey,
-        opubKey: this.state.apply[i].db_opubKey,
-        articleId: this.state.apply[i].db_articleId
-      }
-    });
+  //   // console.log(this.state.apply[i].db_accept);
+  //   const {
+  //     data: { result }
+  //   } = await axios.post("http://localhost:4000/rejectcontract", {
+  //     params: {
+  //       apubKey: this.state.apply[i].db_apubKey,
+  //       opubKey: this.state.apply[i].db_opubKey,
+  //       articleId: this.state.apply[i].db_articleId
+  //     }
+  //   });
 
-    console.log("result:", result);
-    return alert(result);
-  };
+  //   console.log("result:", result);
+  //   return alert(result);
+  // };
 
   render() {
     const { applyList } = this.state;

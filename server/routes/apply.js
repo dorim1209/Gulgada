@@ -7,8 +7,8 @@ router.use(cors());
 
 router.post("/", function(req, res) {
   Article.findAll({
-    /* db_ptype, db_pnum, db_name, db_pw, db_birth 값을 가져옴 */
-    attributes: ["id", "db_pubKey"],
+    /* id, db_pubKey 값을 가져옴 */
+    attributes: ["id", "db_pubKey", "db_title", "db_wtype"],
 
     /* 조건과 값이 일치하는 경우 */
     where: {
@@ -29,6 +29,9 @@ router.post("/", function(req, res) {
           db_apubKey: req.body.params.apubKey,
           db_articleId: req.body.params.articleId,
           db_opubKey: DB.db_pubKey,
+          db_title: DB.db_title,
+          db_wtype: DB.db_wtype,
+          db_name: req.body.params.name,
           db_accept: req.body.params.accept
         })
           /* 조회 성공시 */

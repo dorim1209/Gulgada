@@ -24,6 +24,27 @@ module.exports = (sequelize, DataTypes) => {
         /* NULL 값 입력 안됨 */
         allowNull: false
       },
+      db_title: {
+        //공고 title(사업장 이름)
+        /* 크기가 50인 문자열 */
+        type: DataTypes.STRING(50),
+        /* NULL 값 입력됨 */
+        allowNull: false
+      },
+      db_wtype: {
+        //업종
+        /* 크기가 50인 문자열 */
+        type: DataTypes.STRING(50),
+        /* NULL 값 입력됨 */
+        allowNull: false
+      },
+      db_name: {
+        //업종
+        /* 크기가 50인 문자열 */
+        type: DataTypes.STRING(10),
+        /* NULL 값 입력됨 */
+        allowNull: false
+      },
       db_accept: {
         //사업주가 지원자의 지원에 대한 승낙 여부
         /* 크기가 20인 문자열 */

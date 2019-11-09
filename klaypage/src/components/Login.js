@@ -11,7 +11,7 @@ class Login extends React.Component {
   Join = async e => {
     const {
       data: { result, pnum, name, ptype, pubKey }
-    } = await axios.post("http://localhost:4000/login", {
+    } = await axios.post("http://192.168.11.140:4000/login", {
       params: {
         pnum: this.state.pnum,
         pw: this.state.pw,

@@ -26,7 +26,8 @@ class Main extends React.Component {
     } = await axios.post("http://localhost:4000/apply", {
       params: {
         apubKey: this.state.pubKey,
-        articleId: this.state.article[i].id
+        articleId: this.state.article[i].id,
+        name: localStorage.getItem("pnum")
       }
     });
     // console.log(this.state.article[i].id + this.state.pnum);

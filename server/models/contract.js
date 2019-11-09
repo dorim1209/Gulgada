@@ -1,37 +1,35 @@
 module.exports = (sequelize, DataTypes) => {
   /* user 테이블에 칼럼의 스펙 작성 */
   return sequelize.define(
-    "timelog",
+    "contract",
     {
-      db_name: {
-        /* 크기가 100인 문자열 */
+      articleId: {
+        // 공고 번호
+        /* 크기가 20인 문자열 */
         type: DataTypes.STRING(20),
+        /* NULL 값 입력 안됨 */
+        allowNull: false
+      },
+      owner_key: {
+        // 사업주 key
+        /* 크기가 100인 문자열 */
+        type: DataTypes.STRING(100),
+        /* NULL 값 입력 안됨 */
+        allowNull: false
+      },
+      worker_key: {
+        // 근로자 key
+        /* 크기가 100인 문자열 */
+        type: DataTypes.STRING(100),
         /* NULL 값 입력 안됨 */
         allowNull: true
       },
-      db_pnum: {
-        /* 크기가 100인 문자열 */
-        type: DataTypes.STRING(20),
-        /* NULL 값 입력 안됨 */
-        allowNull: true
-      },
-      db_resultFlag: {
+      is_sign: {
+        // 계약되었는지 여부
         /* 크기가 10인 문자열 */
         type: DataTypes.STRING(10),
         /* NULL 값 입력 안됨 */
-        allowNull: true
-      },
-      db_timeLog: {
-        /* 크기가 100인 문자열 */
-        type: DataTypes.STRING(200),
-        /* NULL 값 입력 안됨 */
-        allowNull: true
-      },
-      db_milliTime: {
-        /* 크기가 10인 문자열 */
-        type: DataTypes.STRING(200),
-        /* NULL 값 입력 안됨 */
-        allowNull: true
+        allowNull: false
       }
     },
     {

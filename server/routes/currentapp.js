@@ -6,7 +6,7 @@ router.use(cors());
 
 router.post("/", function(req, res) {
   Apply.findAll({
-    /* db_ptype, db_pnum, db_name, db_pw, db_birth 값을 가져옴 */
+    /* id, db_apubKey, db_opubKey, db_accept, db_articleId 값을 가져옴 */
     attributes: ["id", "db_apubKey", "db_opubKey", "db_accept", "db_articleId"],
 
     /* 조건과 값이 일치하는 경우 */

@@ -21,12 +21,6 @@ module.exports = (sequelize, DataTypes) => {
         /* NULL 값 입력 안됨 */
         allowNull: true
       },
-      db_pw: {
-        /* 크기가 100인 문자열 */
-        type: DataTypes.STRING(20),
-        /* NULL 값 입력 안됨 */
-        allowNull: true
-      },
       db_birth: {
         /* 크기가 100인 문자열 */
         type: DataTypes.STRING(20),

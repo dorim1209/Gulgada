@@ -4,42 +4,41 @@ import axios from "axios";
 
 class AdminTimelog extends React.Component {
   state = {
-    apply: [],
-    accept: ""
+    applyList: []
   };
   CurrentApp = async e => {
     const {
-      data: { apply }
-    } = await axios.post("http://localhost:4000/currentapp", {
+      data: { applyList }
+    } = await axios.post("http://localhost:4000/createcontract", {
       params: {
-        pubKey: localStorage.getItem("pubKey")
+        pnum: localStorage.getItem("pnum")
       }
     });
-    await this.setState({ apply });
+    await this.setState({ applyList });
   };
   componentDidMount = async () => {
     await this.CurrentApp();
-    console.log("apply", this.state.apply[0].db_accept);
+    console.log("applyList", this.state.applyList);
   };
 
   createCon = async i => {
     console.log(
-      "this.state.apply[i].db_articleId",
-      this.state.apply[i].db_articleId
+      "this.state.applyList[i].db_articleId",
+      this.state.applyList[i].db_articleId
     );
-    console.log(this.state.apply[i].db_apubKey);
-    console.log(this.state.apply[i].db_opubKey);
-    console.log(this.state.apply[i].db_accept);
-    console.log("this.state.apply[i]", this.state.apply[i]);
+    console.log(this.state.applyList[i].db_apubKey);
+    console.log(this.state.applyList[i].db_opubKey);
+    console.log(this.state.applyList[i].db_accept);
+    console.log("this.state.applyList[i]", this.state.applyList[i]);
 
-    // console.log(this.state.apply[i].db_accept);
+    // console.log(this.state.applyList[i].db_accept);
     const {
       data: { result }
-    } = await axios.post("http://localhost:4000/createcontract", {
+    } = await axios.post("http://localhost:4000/createcontract/approve", {
       params: {
-        apubKey: this.state.apply[i].db_apubKey,
-        opubKey: this.state.apply[i].db_opubKey,
-        articleId: this.state.apply[i].db_articleId
+        apubKey: this.state.applyList[i].db_apubKey,
+        opubKey: this.state.applyList[i].db_opubKey,
+        articleId: this.state.applyList[i].db_articleId
       }
     });
 
@@ -113,21 +112,22 @@ class AdminTimelog extends React.Component {
   };
 
   render() {
-    const { apply } = this.state;
-    // console.log("apply", apply[0].db_accept);
+    const { applyList } = this.state;
+    // console.log("applyList", applyList[0].db_accept);
 
-    return apply.length === 0 ? (
+    return applyList.length === 0 ? (
       <>
         <div>올라간 공고가 없어요.</div>
       </>
-    ) : !apply.db_accept ? ( // 계약 체결하면 없어져야 로직 짜기 db_accept로 하면 될듯
+    ) : (
       <>
         <div>
-          {apply.map(({ db_apubKey, id, db_opubKey }, i) => (
+          {applyList.map(({ db_articleId, db_title, db_wtype, db_name }, i) => (
             <Apply
-              db_apubKey={db_apubKey}
-              id={id}
-              db_opubKey={db_opubKey}
+              db_articleId={db_articleId}
+              db_title={db_title}
+              db_wtype={db_wtype}
+              db_name={db_name}
               createCon={() => {
                 this.createCon(i);
               }}
@@ -137,10 +137,6 @@ class AdminTimelog extends React.Component {
             />
           ))}
         </div>
-      </>
-    ) : (
-      <>
-        <div>현재 대기중인 지원자가 없어요~</div>
       </>
     );
   }

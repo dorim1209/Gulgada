@@ -20,9 +20,9 @@ db.sequelize = sequelize;
 /* function */
 db.Sequelize = Sequelize;
 
-db.User = require("./user")(sequelize, Sequelize);
 db.Article = require("./article")(sequelize, Sequelize);
 db.Join = require("./join")(sequelize, Sequelize);
+db.Timelog = require("./timelog")(sequelize, Sequelize);
 db.Key = require("./key")(sequelize, Sequelize);
 
 module.exports = db;

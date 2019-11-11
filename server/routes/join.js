@@ -5,16 +5,12 @@ var Key = require("../models").Key;
 var cors = require("cors");
 router.use(cors());
 
+const Caver = require("caver-js");
+const caver = new Caver("https://api.baobab.klaytn.net:8651/");
 
-const Caver = require('caver-js');
-const caver = new Caver('https://api.baobab.klaytn.net:8651/');
-
-
-
-router.post("/", function (req, res) {
-
+router.post("/", function(req, res) {
   const account = caver.klay.accounts.create();
-  console.log('******************************************');
+  console.log("******************************************");
   console.log("account.address : ", account.address);
   console.log("account.accountKey : ", account.accountKey);
   console.log("account.privateKey : ", account.privateKey);
@@ -22,13 +18,13 @@ router.post("/", function (req, res) {
   console.log("account.sign : ", account.sign);
   console.log("account.encrypt : ", account.encrypt);
   console.log("account.getKlaytnWalletKey : ", account.getKlaytnWalletKey);
-  console.log('******************************************');
+  console.log("******************************************");
   /* Join 테이블의 데이터를 생성하는 SQL문 */
   console.log(req.body);
 
   Key.create({
     db_publickey: account.address,
-    db_privatekey: account.privateKey,
+    db_privatekey: account.privateKey
   })
     /* 조회 성공시 */
     .then(result => {
@@ -60,7 +56,7 @@ router.post("/", function (req, res) {
 function Key(db_publickey, db_privatekey) {
   Key.create({
     db_publickey: db_publickey,
-    db_privatekey: db_privatekey,
+    db_privatekey: db_privatekey
   })
     /* 조회 성공시 */
     .then(result => {

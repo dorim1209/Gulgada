@@ -5,21 +5,18 @@ var cors = require("cors");
 router.use(cors());
 
 /* GET users listing. */
-router.post("/", function(req, res, next) {
+router.post("/", function (req, res, next) {
   if (!req.body.params.pnum) {
     res.json(JSON.stringify("휴대폰 번호를 입력하세요"));
-  } else if (!req.body.params.pw) {
-    res.json(JSON.stringify("비밀번호를 입력하세요"));
   } else {
     /* Join 테이블의 데이터를 가져오는 SQL문 */
     Join.findAll({
       /* db_ptype, db_pnum, db_name, db_pw, db_birth 값을 가져옴 */
-      attributes: ["db_ptype", "db_pnum", "db_name", "db_pw", "db_birth"],
+      attributes: ["db_ptype", "db_pnum", "db_name", "db_birth", "db_public"],
 
       /* 조건과 값이 일치하는 경우 */
       where: {
         db_pnum: req.body.params.pnum,
-        db_pw: req.body.params.pw
       }
     })
       /* 조회 성공시 */
@@ -33,7 +30,14 @@ router.post("/", function(req, res, next) {
           console.log("DB", DB);
 
           //req.session.login = true;
-          res.json({ result: 1, pnum: DB.db_pnum, name: DB.db_name });
+          res.json({
+            result: 1,
+            pubKey: DB.db_public,
+            name: DB.db_name,
+            pnum: DB.db_pnum,
+            ptype: DB.db_ptype,
+            birth: DB.db_birth
+          });
         } else {
           res.json({ result: 0 });
         }

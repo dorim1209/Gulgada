@@ -4,31 +4,28 @@ import axios from "axios";
 class Login extends React.Component {
   state = {
     pnum: "",
-    ptype: "",
-    pw: "",
-    pubKey: ""
+    pw: ""
   };
   Join = async e => {
     const {
-      data: { result, pnum, name, ptype, pubKey }
-    } = await axios.post("http://192.168.11.140:4000/login", {
+      data: { result, pnum, name }
+    } = await axios.post("http://localhost:4000/login", {
       params: {
         pnum: this.state.pnum,
-        pw: this.state.pw,
-        pubKey: this.state.pubKey
+        pw: this.state.pw
       }
     });
+    console.log("this.state.pnum: ", this.state.pnum);
 
     console.log("result: ", result);
     if (result === 1) {
       localStorage.setItem("pnum", pnum);
       localStorage.setItem("name", name);
-      localStorage.setItem("ptype", ptype);
-      localStorage.setItem("pubKey", pubKey);
       return alert(`${name}님 로그인되었습니다.`);
       // return alert(`pnum : ${pnum},name : ${name},pnum : ${pnum},pnum : ${pnum},`);
     }
   };
+
   pnumChange = e => {
     this.setState({
       pnum: e.target.value

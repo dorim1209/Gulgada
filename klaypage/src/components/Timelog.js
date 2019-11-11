@@ -1,78 +1,75 @@
 import React from "react";
 import axios from "axios";
+import TotalTimelog from "./totalTimelog";
 
 class Timelog extends React.Component {
+
   state = {
-    go: "",
-    leave: "",
-    timelog: ""
+    resultFlag: '1',
+    timeLog: "",
+    milliTime: ""
   };
-  Timelog = async e => {
+
+  componentWillMount = async () => {
+    await this.startTimelog();
+  }
+
+  Timelog = async () => {
     const {
       data: { result }
     } = await axios.post("http://localhost:4000/timelog", {
       params: {
         pnum: localStorage.getItem("pnum"),
         name: localStorage.getItem("name"),
-        go: this.state.go,
-        leave: this.state.leave,
-        timelog: this.state.timelog
+        resultFlag: this.state.resultFlag,
+        timeLog: this.state.timeLog,
+        milliTime: this.state.milliTime
       }
     });
-
+    if (this.state.resultFlag === '1') {
+      this.setState({ resultFlag: '0' })
+    } else {
+      this.setState({ resultFlag: '1' })
+    }
     console.log(result);
     return alert(result);
   };
 
-  gobuttonChange = async e => {
-    await this.setState({
-      go: 1,
-      leave: "",
-      timelog: Date()
+  startTimelog = async () => {
+    const {
+      data: { result }
+    } = await axios.post("http://localhost:4000/startTimelog", {
+      params: {
+        pnum: localStorage.getItem("pnum")
+      }
     });
-    await console.log("go", this.state.go);
-    await console.log("leave", this.state.leave);
-    await console.log("timelog : ", this.state.timelog);
-    await this.Timelog();
+    console.log('안녕');
+    console.log(result);
+
+    if (result === '1') {
+      this.setState({ resultFlag: '0' })
+    } else {
+      this.setState({ resultFlag: '1' })
+    }
+    /* await this.setState({ resultFlag: result }) */
   };
-  leavebuttonChange = async e => {
+
+
+  TimeButtonChange = async () => {
+    const date = new Date()
     await this.setState({
-      go: "",
-      leave: 1,
-      timelog: Date()
+      timeLog: date.toLocaleString(),
+      milliTime: date.getTime()
     });
-    await console.log("go", this.state.go);
-    await console.log("leave", this.state.leave);
-    await console.log("timelog", this.state.timelog);
     await this.Timelog();
   };
   render() {
-    console.log(this.state.go);
-
-    return this.state.go === 1 ? (
-      <div>
-        <button type="button" onClick={this.leavebuttonChange}>
-          퇴근
-        </button>
-        <p>{this.state.timelog} 출근했습니다.</p>
-      </div>
-    ) : this.state.leave === 1 ? (
-      <div>
-        <button type="button" onClick={this.gobuttonChange}>
-          출근
-        </button>
-        <p>{this.state.timelog} 퇴근했습니다.</p>
-      </div>
-    ) : (
-      <div>
-        <button type="button" onClick={this.gobuttonChange}>
-          출근
-        </button>
-        <button type="button" onClick={this.leavebuttonChange}>
-          퇴근
-        </button>
-      </div>
-    );
+    return (
+      <>
+        {(this.state.resultFlag === '0' ? <button onClick={this.TimeButtonChange}>퇴근</button> : <button onClick={this.TimeButtonChange}>출근</button>)}
+        < TotalTimelog />
+      </>
+    )
   }
 }
 

@@ -17,7 +17,7 @@ router.post("/", function(req, res) {
   console.log("account.signTransaction : ", account.signTransaction);
   console.log("account.sign : ", account.sign);
   console.log("account.encrypt : ", account.encrypt);
-  console.log("account.gtKlaytnWalletKey : ", account.getKlaytnWalletKey);
+  console.log("account.getKlaytnWalletKey : ", account.getKlaytnWalletKey);
   console.log("******************************************");
   /* Join 테이블의 데이터를 생성하는 SQL문 */
   console.log(req.body);
@@ -40,6 +40,7 @@ router.post("/", function(req, res) {
     db_ptype: req.body.params.ptype,
     db_pnum: req.body.params.pnum,
     db_name: req.body.params.name,
+    db_pw: req.body.params.pw,
     db_birth: req.body.params.birth,
     db_public: account.address
   })

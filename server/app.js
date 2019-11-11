@@ -13,12 +13,9 @@ var loginRouter = require("./routes/login");
 var mypageRouter = require("./routes/mypage");
 var uploadRouter = require("./routes/upload");
 var timelogRouter = require("./routes/timelog");
-var applyRouter = require("./routes/apply");
-var currentappRouter = require("./routes/currentapp");
-var createcontractRouter = require("./routes/createcontract");
-var totalTimelogRouter = require("./routes/totalTimelog");
 var startTimelogRouter = require("./routes/startTimelog");
-var myapplylistRouter = require("./routes/myapplylist");
+var totalTimelogRouter = require("./routes/totalTimelog");
+var articleDetailRouter = require("./routes/articleDetail");
 
 var app = express();
 sequelize.sync();
@@ -42,20 +39,17 @@ app.use("/mypage", mypageRouter);
 app.use("/login", loginRouter);
 app.use("/upload", uploadRouter);
 app.use("/timelog", timelogRouter);
-app.use("/apply", applyRouter);
-app.use("/currentapp", currentappRouter);
-app.use("/createcontract", createcontractRouter);
-app.use("/totalTimelog", totalTimelogRouter);
 app.use("/startTimelog", startTimelogRouter);
-app.use("/myapplylist", myapplylistRouter);
+app.use("/totalTimelog", totalTimelogRouter);
+app.use("/articleDetail", articleDetailRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};

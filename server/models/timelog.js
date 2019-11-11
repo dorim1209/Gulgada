@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING(200),
         /* NULL 값 입력 안됨 */
         allowNull: true
-      }
+      },
     },
     {
       timestamps: false

@@ -4,8 +4,8 @@ var Timelog = require("../models").Timelog;
 var cors = require("cors");
 router.use(cors());
 
-router.post("/", function(req, res) {
-  console.log("asdasdasdasd: ", req.body.params);
+router.post("/", function (req, res) {
+  console.log('asdasdasdasd: ', req.body.params);
 
   /* Timelog 테이블의 데이터를 생성하는 SQL문 */
   Timelog.create({
@@ -17,7 +17,8 @@ router.post("/", function(req, res) {
   })
     /* 조회 성공시 */
     .then(result => {
-      const DB = JSON.stringify(result);
+
+      const DB = JSON.stringify(result)
       console.log("DB : " + DB);
 
       /* result 값을 json 형태로 리턴 */

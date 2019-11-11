@@ -4,8 +4,8 @@ var Timelog = require("../models").Timelog;
 var cors = require("cors");
 router.use(cors());
 
-router.post("/", function(req, res) {
-  console.log("asdasdasdasd: ", req.body.params);
+router.post("/", function (req, res) {
+  console.log('asdasdasdasd: ', req.body.params);
 
   /* Timelog 테이블의 데이터를 생성하는 SQL문 */
   Timelog.findAll({
@@ -14,9 +14,8 @@ router.post("/", function(req, res) {
 
     /* 조건과 값이 일치하는 경우 */
     where: {
-      db_pnum: req.body.params.pnum
-    },
-    order: [["db_milliTime", "DESC"]]
+      db_pnum: req.body.params.pnum,
+    }, order: [['db_milliTime', 'DESC']]
   })
     /* 조회 성공시 */
     .then(result => {

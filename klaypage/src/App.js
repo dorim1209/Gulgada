@@ -6,7 +6,6 @@ import Join from "./components/Join";
 import Mypage from "./components/Mypage";
 import Upload from "./components/Upload";
 import Timelog from "./components/Timelog";
-import AdminTimelog from "./components/AdminTimelog";
 
 import "./css/App.css";
 
@@ -17,8 +16,7 @@ class App extends React.Component {
     JoinMode: false,
     MypageMode: false,
     UploadMode: false,
-    TimelogMode: false,
-    AdminTimelogMode: false
+    TimelogMode: false
   };
   MainMode = () => {
     this.setState({
@@ -27,8 +25,7 @@ class App extends React.Component {
       JoinMode: false,
       MypageMode: false,
       UploadMode: false,
-      TimelogMode: false,
-      AdminTimelogMode: false
+      TimelogMode: false
     });
   };
   LoginMode = e => {
@@ -38,8 +35,7 @@ class App extends React.Component {
       JoinMode: false,
       MypageMode: false,
       UploadMode: false,
-      TimelogMode: false,
-      AdminTimelogMode: false
+      TimelogMode: false
     });
   };
   JoinMode = () => {
@@ -49,8 +45,7 @@ class App extends React.Component {
       JoinMode: true,
       MypageMode: false,
       UploadMode: false,
-      TimelogMode: false,
-      AdminTimelogMode: false
+      TimelogMode: false
     });
   };
   MypageMode = () => {
@@ -60,8 +55,7 @@ class App extends React.Component {
       JoinMode: false,
       MypageMode: true,
       UploadMode: false,
-      TimelogMode: false,
-      AdminTimelogMode: false
+      TimelogMode: false
     });
   };
   UploadMode = () => {
@@ -71,8 +65,7 @@ class App extends React.Component {
       JoinMode: false,
       MypageMode: false,
       UploadMode: true,
-      TimelogMode: false,
-      AdminTimelogMode: false
+      TimelogMode: false
     });
   };
   TimelogMode = () => {
@@ -82,19 +75,7 @@ class App extends React.Component {
       JoinMode: false,
       MypageMode: false,
       UploadMode: false,
-      TimelogMode: true,
-      AdminTimelogMode: false
-    });
-  };
-  AdminTimelogMode = () => {
-    this.setState({
-      MainMode: false,
-      LoginMode: false,
-      JoinMode: false,
-      MypageMode: false,
-      UploadMode: false,
-      TimelogMode: false,
-      AdminTimelogMode: true
+      TimelogMode: true
     });
   };
   LogoutMode = () => {
@@ -107,8 +88,7 @@ class App extends React.Component {
       JoinMode,
       MypageMode,
       UploadMode,
-      TimelogMode,
-      AdminTimelogMode
+      TimelogMode
     } = this.state;
     return (
       <div className="App">
@@ -120,7 +100,6 @@ class App extends React.Component {
           MypageMode={this.MypageMode}
           UploadMode={this.UploadMode}
           TimelogMode={this.TimelogMode}
-          AdminTimelogMode={this.AdminTimelogMode}
         />
         {MainMode ? (
           <Main />
@@ -134,8 +113,6 @@ class App extends React.Component {
           <Upload />
         ) : TimelogMode ? (
           <Timelog />
-        ) : AdminTimelogMode ? (
-          <AdminTimelog />
         ) : (
           <Main />
         )}

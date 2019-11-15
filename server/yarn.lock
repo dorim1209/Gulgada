@@ -270,10 +270,10 @@ caseless@~0.12.0:
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
   integrity sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=
 
-caver-js@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/caver-js/-/caver-js-1.2.0.tgz#3463fb62b1e7d426362648282f983cabbc41b644"
-  integrity sha512-Mj3r+PqgLchSUWexx4Q2LJYot7nI5YxQWaHaUsSZsm0Q+WbIKjHq0zFX6yCAj5gSHNLoGNfU/3vT4ycN/+OT/w==
+caver-js@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/caver-js/-/caver-js-1.2.1.tgz#c433621aa1ee0aa7079164061036e641faf149d7"
+  integrity sha512-L+FEzWL+ZK1gr7giSyWxn/GKxYc4OWSfrpFXzCA0wmRZtfleCBiXHoYy/1C0yRslebxV+j2WsMdBtv1fzSWa4w==
   dependencies:
     "@babel/runtime" "^7.3.1"
     any-promise "1.3.0"
@@ -295,6 +295,7 @@ caver-js@^1.2.0:
     request "2.87.0"
     requestretry "^2.0.2"
     scryptsy "2.1.0"
+    semver "6.2.0"
     underscore "^1.9.1"
     utf8 "2.1.1"
     uuid "2.0.1"
@@ -1061,6 +1062,11 @@ it-each@^0.4.0:
   dependencies:
     dot-notes "3.1.1"
 
+js-sha256@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/js-sha256/-/js-sha256-0.9.0.tgz#0b89ac166583e91ef9123644bd3c5334ce9d0966"
+  integrity sha512-sga3MHh9sgQN2+pJ9VYZ+1LPwXOxuBJBA5nrR5/ofPfuiJBE2hnjsaN8se8JznOmGLN2p49Pe5U/ttafcs/apA==
+
 js-sha3@0.5.7:
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/js-sha3/-/js-sha3-0.5.7.tgz#0d4ffd8002d5333aabaf4a23eed2f6374c9f28e7"
@@ -1617,6 +1623,11 @@ secp256k1@^3.0.1:
     elliptic "^6.4.1"
     nan "^2.14.0"
     safe-buffer "^5.1.2"
+
+semver@6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-6.2.0.tgz#4d813d9590aaf8a9192693d6c85b9344de5901db"
+  integrity sha512-jdFC1VdUGT/2Scgbimf7FSx9iJLXoqfglSF+gJeuNWVpiE37OIbc1jywR/GJyFdz3mnkz2/id0L0J/cr0izR5A==
 
 semver@^6.3.0:
   version "6.3.0"

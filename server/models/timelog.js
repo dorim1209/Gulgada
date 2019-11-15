@@ -9,9 +9,9 @@ module.exports = (sequelize, DataTypes) => {
         /* NULL 값 입력 안됨 */
         allowNull: true
       },
-      db_pnum: {
+      db_public: {
         /* 크기가 100인 문자열 */
-        type: DataTypes.STRING(20),
+        type: DataTypes.STRING(100),
         /* NULL 값 입력 안됨 */
         allowNull: true
       },

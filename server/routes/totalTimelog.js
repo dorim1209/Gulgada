@@ -13,7 +13,7 @@ router.post("/", function (req, res) {
 
     /* 조건과 값이 일치하는 경우 */
     where: {
-      db_pnum: req.body.params.pnum,
+      db_public: req.body.params.pubKey,
     }
   })
     /* 조회 성공시 */

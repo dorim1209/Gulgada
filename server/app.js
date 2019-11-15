@@ -4,8 +4,6 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
 var joinRouter = require("./routes/join");
 var sequelize = require("./models").sequelize;
 var articleRouter = require("./routes/article");
@@ -16,6 +14,12 @@ var timelogRouter = require("./routes/timelog");
 var startTimelogRouter = require("./routes/startTimelog");
 var totalTimelogRouter = require("./routes/totalTimelog");
 var articleDetailRouter = require("./routes/articleDetail");
+var applyRouter = require("./routes/apply");
+var createcontractRouter = require("./routes/createcontract");
+var myapplylistRouter = require("./routes/myapplylist");
+var signContractRouter = require("./routes/signContract");
+var queryContractRouter = require("./routes/queryContract");
+var jobSeekerListRouter = require("./routes/jobSeekerList");
 
 var app = express();
 sequelize.sync();
@@ -31,8 +35,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "upload")));
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
 app.use("/article", articleRouter);
 app.use("/join", joinRouter);
 app.use("/mypage", mypageRouter);
@@ -42,6 +44,12 @@ app.use("/timelog", timelogRouter);
 app.use("/startTimelog", startTimelogRouter);
 app.use("/totalTimelog", totalTimelogRouter);
 app.use("/articleDetail", articleDetailRouter);
+app.use("/apply", applyRouter);
+app.use("/createcontract", createcontractRouter);
+app.use("/myapplylist", myapplylistRouter);
+app.use("/signContract", signContractRouter);
+app.use("/queryContract", queryContractRouter);
+app.use("/jobSeekerList", jobSeekerListRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

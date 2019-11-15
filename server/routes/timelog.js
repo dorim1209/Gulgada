@@ -9,7 +9,7 @@ router.post("/", function (req, res) {
 
   /* Timelog 테이블의 데이터를 생성하는 SQL문 */
   Timelog.create({
-    db_pnum: req.body.params.pnum,
+    db_public: req.body.params.db_public,
     db_name: req.body.params.name,
     db_resultFlag: req.body.params.resultFlag,
     db_timeLog: req.body.params.timeLog,

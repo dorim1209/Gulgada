@@ -43,7 +43,7 @@ router.post("/", upload.single("file"), function (req, res) {
     db_smin: req.body.db_smin,
     db_emin: req.body.db_emin,
 
-    db_pubkey: req.body.db_pubkey,
+    db_pubKey: req.body.db_pubkey,
 
     db_money: req.body.db_money,
     db_address: req.body.db_address,
